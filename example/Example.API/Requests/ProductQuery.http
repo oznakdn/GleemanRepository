@@ -1,0 +1,26 @@
+@hostname = localhost
+@port = 5139
+@host = http://{{hostname}}:{{port}}/api/products
+@contentType = application/json
+
+
+
+### GetProducts
+GET {{host}}/GetProducts HTTP/1.1
+
+
+### GetProducts with category
+GET {{host}}/GetProductsWithCategory HTTP/1.1
+
+
+### GetProducts with Pagination
+GET  {{host}}/GetProductsWithPagination?pageNumber=1&pageSize=2 HTTP/1.1
+
+
+### GetProduct
+GET {{host}}/GetProduct/1 HTTP/1.1
+
+
+### GetProduct with category
+GET {{host}}/GetProductWithCategory/1 HTTP/1.1
+

@@ -1,0 +1,33 @@
+@hostname = localhost
+@port = 5139
+@host = http://{{hostname}}:{{port}}/api/products
+@contentType = application/json
+
+
+
+### Create Product Async
+POST {{host}}/Create HTTP/1.1
+Content-Type: {{contentType}}
+
+{
+    "displayName":"Product5",
+    "price":2000,
+    "categoryId":1
+}
+
+
+### Update Product Async
+PUT {{host}}/Update/1 HTTP/1.1
+Content-Type: {{contentType}}
+
+{
+    "displayName":"Product11",
+    "price":20000,
+    "categoryId":1
+}
+
+
+
+### Delete Product Async
+DELETE  {{host}}/Delete/1 HTTP/1.1
+
