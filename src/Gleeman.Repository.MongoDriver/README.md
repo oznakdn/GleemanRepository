@@ -94,6 +94,29 @@ public interface IMongoQuerySyncRepository<TCollection>
 ```
 
 ## EXAMPLE
+#### Program.cs
+```csharp
+using Gleeman.Repository.MongoDriver.Configuration;
+```
+```csharp
+builder.Services.AddMongoRepository(option =>
+{
+    option.DatabaseName = "TestDB";
+    option.ConnectionString = "mongodb://localhost:27017";
+});
+```
+### OR
+#### appsettings.json
+```json
+ "MongoOption": {
+    "ConnectionString": "mongodb://localhost:27017",
+    "DatabaseName": "Test"
+  }
+```
+#### Program.cs
+```csharp
+builder.Services.AddMongoRepository(builder.Configuration);
+```
 
 ```csharp
 public interface ICustomerQueryRepository:IMongoQueryAsyncRepository<Customer>
