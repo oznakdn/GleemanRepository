@@ -3,7 +3,7 @@ using Gleeman.Repository.MongoDriver;
 using Gleeman.Repository.MongoDriver.Abstracts.Query;
 using Microsoft.Extensions.Options;
 
-namespace Example.API.Repositories.Queries;
+namespace Example.API.Repositories.Queries.MongoDriver;
 
 public class CustomerQueryRepository : MongoQueryRepository<Customer>, ICustomerQueryRepository
 {

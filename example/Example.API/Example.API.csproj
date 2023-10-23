@@ -13,8 +13,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Gleeman.Repository.Dapper\Gleeman.Repository.Dapper.csproj" />
     <ProjectReference Include="..\..\src\Gleeman.Repository.EFCore\Gleeman.Repository.EFCore.csproj" />
     <ProjectReference Include="..\..\src\Gleeman.Repository.MongoDriver\Gleeman.Repository.MongoDriver.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Repositories\Queries\Dapper\" />
   </ItemGroup>
 
 </Project>

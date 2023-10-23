@@ -1,7 +1,7 @@
 ﻿using Example.API.Dtos;
 using Example.API.Models;
-using Example.API.Repositories.Commands;
-using Example.API.Repositories.Queries;
+using Example.API.Repositories.Commands.EFCore;
+using Example.API.Repositories.Queries.EFCore;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Example.API.Controllers

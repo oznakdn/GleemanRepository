@@ -1,6 +1,6 @@
 ﻿using Example.API.Models;
-using Example.API.Repositories.Commands;
-using Example.API.Repositories.Queries;
+using Example.API.Repositories.Commands.MongoDriver;
+using Example.API.Repositories.Queries.MongoDriver;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Example.API.Controllers;

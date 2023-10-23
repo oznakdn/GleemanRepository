@@ -2,7 +2,7 @@
 using Example.API.Models;
 using Gleeman.Repository.EFCore.Abstracts.Query;
 
-namespace Example.API.Repositories.Queries;
+namespace Example.API.Repositories.Queries.EFCore;
 
 public class ProductQueryRepository : EFQueryRepository<Product, AppDbContext>, IProductQueryRepository
 {
