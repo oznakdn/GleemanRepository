@@ -139,7 +139,7 @@ public class EmployeesController : ControllerBase
     [HttpPost]
     public async Task<IActionResult>CreateEmployee(Employee employee)
     {
-        string sql= "INSERT INTO Companies (CompanyName, CompanyAddress, Country,GlassdoorRating) VALUES (@Name, @Salary)";
+        string sql= "INSERT INTO Employees (Name, Salary) VALUES (@Name, @Salary)";
 
         var parameters = new DynamicParameters();
         parameters.Add("Name", employee.Name, DbType.String);
