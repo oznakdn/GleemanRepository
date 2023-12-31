@@ -1,5 +1,6 @@
-﻿using Gleeman.Repository.MongoDriver.Interfaces.Query;
-using Microsoft.Extensions.Options;
+﻿using Gleeman.Repository.MongoDriver.Context;
+using Gleeman.Repository.MongoDriver.Interfaces.Query;
+using Gleeman.Repository.MongoDriver.Options;
 using MongoDB.Driver;
 using System.Linq.Expressions;
 
@@ -10,10 +11,8 @@ public abstract class MongoQueryRepository<TCollection> : MongoContext<TCollecti
     IMongoQuerySyncRepository<TCollection>
     where TCollection : class
 {
-    
-    protected MongoQueryRepository(IOptions<MongoOption>? option,string collection) : base(option, collection)
+    protected MongoQueryRepository(IMongoOptions option) : base(option)
     {
-        Collection = collection;
     }
 
     public virtual async Task<IEnumerable<TCollection>> ReadAllAsync(CancellationToken cancellationToken = default, Expression<Func<TCollection, bool>> filter = null,
@@ -24,30 +23,30 @@ public abstract class MongoQueryRepository<TCollection> : MongoContext<TCollecti
 
         if (pagination != null)
         {
-            return await _collection.Find(filter == null ? x => true : filter).ToListAsync();
+            return await Collection.Find(filter == null ? x => true : filter).ToListAsync();
         }
 
-        return await _collection.Find(filter == null ? x => true : filter).Skip((page.PageNumber - 1) * page.PageSize).Limit(page.PageSize).ToListAsync(cancellationToken);
+        return await Collection.Find(filter == null ? x => true : filter).Skip((page.PageNumber - 1) * page.PageSize).Limit(page.PageSize).ToListAsync(cancellationToken);
     }
 
     public virtual async Task<TCollection> ReadFirstOrDefaultAsync(Expression<Func<TCollection, bool>> filter, CancellationToken cancellationToken = default)
     {
-        return await _collection.Find(filter).FirstOrDefaultAsync(cancellationToken); ;
+        return await Collection.Find(filter).FirstOrDefaultAsync(cancellationToken); ;
     }
 
     public virtual async Task<TCollection> ReadSingleOrDefaultAsync(Expression<Func<TCollection, bool>> filter, CancellationToken cancellationToken = default)
     {
-        return await _collection.Find(filter).SingleOrDefaultAsync(cancellationToken);
+        return await Collection.Find(filter).SingleOrDefaultAsync(cancellationToken);
     }
 
     public virtual async Task<TCollection> ReadSingleAsync(Expression<Func<TCollection, bool>> filter, CancellationToken cancellationToken = default)
     {
-        return await _collection.Find(filter).SingleAsync(cancellationToken);
+        return await Collection.Find(filter).SingleAsync(cancellationToken);
     }
 
     public virtual async Task<TCollection> ReadFirstAsync(Expression<Func<TCollection, bool>> filter, CancellationToken cancellationToken = default)
     {
-        return await _collection.Find(filter).FirstAsync(cancellationToken);
+        return await Collection.Find(filter).FirstAsync(cancellationToken);
     }
 
     public virtual IEnumerable<TCollection> ReadAll(Expression<Func<TCollection, bool>> filter = null, Action<Pagination> pagination = null)
@@ -57,30 +56,30 @@ public abstract class MongoQueryRepository<TCollection> : MongoContext<TCollecti
 
         if (pagination != null)
         {
-            return _collection.Find(filter == null ? x => true : filter).ToList();
+            return Collection.Find(filter == null ? x => true : filter).ToList();
         }
 
-        return _collection.Find(filter == null ? x => true : filter).Skip((page.PageNumber - 1) * page.PageSize).Limit(page.PageSize).ToList();
+        return Collection.Find(filter == null ? x => true : filter).Skip((page.PageNumber - 1) * page.PageSize).Limit(page.PageSize).ToList();
     }
 
     public virtual TCollection ReadSingleOrDefault(Expression<Func<TCollection, bool>> filter)
     {
-        return _collection.Find(filter).SingleOrDefault();
+        return Collection.Find(filter).SingleOrDefault();
     }
 
     public virtual TCollection ReadFirstOrDefaut(Expression<Func<TCollection, bool>> filter)
     {
-        return _collection.Find(filter).FirstOrDefault();
+        return Collection.Find(filter).FirstOrDefault();
     }
 
     public virtual TCollection ReadSingle(Expression<Func<TCollection, bool>> filter)
     {
-        return _collection.Find(filter).Single();
+        return Collection.Find(filter).Single();
     }
 
     public virtual TCollection ReadFirst(Expression<Func<TCollection, bool>> filter)
     {
-        return _collection.Find(filter).First();
+        return Collection.Find(filter).First();
     }
 
 }

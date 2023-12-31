@@ -1,24 +1,17 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Gleeman.Repository.MongoDriver.Options;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 
 namespace Gleeman.Repository.MongoDriver.Configuration;
 
 public static class ServiceConfiguration
 {
-    public static string ConnectionString;
-    public static string DatabaseName;
     public static IServiceCollection AddMongoRepository(this IServiceCollection services,IConfiguration configuration)
     {
-        services.Configure<MongoOption>(configuration.GetSection(nameof(MongoOption)));
+        services.Configure<MongoOptions>(configuration.GetSection(nameof(MongoOptions)));
+        services.AddScoped<IMongoOptions>(sp => sp.GetRequiredService<IOptions<MongoOptions>>().Value);
         return services;
     }
 
-    public static IServiceCollection AddMongoRepository(this IServiceCollection services, Action<MongoOption>option)
-    {
-        MongoOption mongoOption = new();
-        option.Invoke(mongoOption);
-        ConnectionString = mongoOption.ConnectionString;
-        DatabaseName = mongoOption.DatabaseName;
-        return services;
-    }
 }

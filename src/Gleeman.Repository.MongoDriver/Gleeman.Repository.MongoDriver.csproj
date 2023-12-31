@@ -5,7 +5,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <Title>Repository Pattern Implementation for  MongoDriver</Title>
-    <Version>7.0.0</Version>
+    <Version>7.0.1</Version>
     <Description>MongoDriver Repository Pattern Implementation for easy CQRS usage</Description>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/oznakdn/GleemanRepository/tree/master/src/Gleeman.Repository.MongoDriver</RepositoryUrl>

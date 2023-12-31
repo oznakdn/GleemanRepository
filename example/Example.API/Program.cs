@@ -23,12 +23,13 @@ builder.Services.AddScoped<ICustomerQueryRepository, CustomerQueryRepository>();
 builder.Services.AddScoped<ICustomerCommandRepository, CustomerCommandRepository>();
 builder.Services.AddScoped<IEmployeeCommandRepository,EmployeeCommandRepository>();
 
-//builder.Services.AddMongoRepository(builder.Configuration);
-builder.Services.AddMongoRepository(option =>
-{
-    option.DatabaseName = "TestDB";
-    option.ConnectionString = "mongodb://localhost:27017";
-});
+builder.Services.AddMongoRepository(builder.Configuration);
+
+//builder.Services.AddMongoRepository(option =>
+//{
+//    option.DatabaseName = "TestDB";
+//    option.ConnectionString = "mongodb://localhost:27017";
+//});
 
 builder.Services.AddDapperRepository(option =>
 {
