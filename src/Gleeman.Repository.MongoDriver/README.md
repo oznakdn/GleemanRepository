@@ -93,55 +93,49 @@ public interface IMongoQuerySyncRepository<TCollection>
 }
 ```
 
-## EXAMPLE
+## USAGE
 #### Program.cs
 ```csharp
 using Gleeman.Repository.MongoDriver.Configuration;
 ```
 ```csharp
-builder.Services.AddMongoRepository(option =>
-{
-    option.DatabaseName = "TestDB";
-    option.ConnectionString = "mongodb://localhost:27017";
-});
+builder.Services.AddMongoRepository(builder.Configuration);
 ```
-### OR
+
 #### appsettings.json
 ```json
  "MongoOption": {
     "ConnectionString": "mongodb://localhost:27017",
-    "DatabaseName": "Test"
+    "DatabaseName": "CustomerDB"
   }
-```
-#### Program.cs
-```csharp
-builder.Services.AddMongoRepository(builder.Configuration);
 ```
 
 ```csharp
-public interface ICustomerQueryRepository:IMongoQueryAsyncRepository<Customer>
+// Command
+public interface ICustomerCommandRepository : IMongoCreateAsyncRepository<Customer>
 {
 }
 
+
+public class CustomerCommandRepository : MongoCommandRepository<Customer>, ICustomerCommandRepository
+{
+    public CustomerCommandRepository(IMongoOptions option) : base(option)
+    {
+    }
+}
+
+// Query
+public interface ICustomerQueryRepository : IMongoQueryAsyncRepository<Customer>
+{
+}
 
 public class CustomerQueryRepository : MongoQueryRepository<Customer>, ICustomerQueryRepository
 {
-    public CustomerQueryRepository(IOptions<MongoOption>? option) : base(option, nameof(Customer))
-    {
-
-    }
-}
-
-public interface ICustomerCommandRepository:IMongoCreateAsyncRepository<Customer>
-{
-}
-
-public class CustomerCommandRepository : MongoCommandRepository<Customer>,ICustomerCommandRepository
-{
-    public CustomerCommandRepository(IOptions<MongoOption>? option) : base(option, nameof(Customer))
+    public CustomerQueryRepository(IMongoOptions option) : base(option)
     {
     }
 }
+
 ```
 
 ```csharp
@@ -173,5 +167,9 @@ public class CustomersController : ControllerBase
     }
 }
 ```
+![2](https://github.com/oznakdn/GleemanRepository/assets/79724084/bbd413d5-21b1-4ab4-9f8b-01ec0f399513)
+![1](https://github.com/oznakdn/GleemanRepository/assets/79724084/881ae0d6-b477-4a1b-a322-a34ceed20112)
+
+
 
 
