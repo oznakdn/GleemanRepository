@@ -5,13 +5,14 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <Title>Repository Pattern Implementation for  MongoDriver</Title>
-    <Version>7.0.1</Version>
+    <Version>7.0.2</Version>
     <Description>MongoDriver Repository Pattern Implementation for easy CQRS usage</Description>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/oznakdn/GleemanRepository/tree/master/src/Gleeman.Repository.MongoDriver</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>Repository,GenericRepository,RepositoryDesignPattern,EasyCQRS</PackageTags>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageReleaseNotes>Collection name's last character bug was fixed</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

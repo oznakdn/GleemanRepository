@@ -1,4 +1,5 @@
-﻿using Gleeman.Repository.MongoDriver.Options;
+﻿using Gleeman.Repository.MongoDriver.Extensions;
+using Gleeman.Repository.MongoDriver.Options;
 using MongoDB.Driver;
 
 namespace Gleeman.Repository.MongoDriver.Context;
@@ -16,7 +17,7 @@ where TCollection : class
 
         MongoClient = new MongoClient(option.ConnectionString);
         var database = MongoClient.GetDatabase(option.DatabaseName);
-        Collection = database.GetCollection<TCollection>(typeof(TCollection).Name + "s");
+        Collection = database.GetCollection<TCollection>(typeof(TCollection).Name.AddPlural());
     }
 
 }
